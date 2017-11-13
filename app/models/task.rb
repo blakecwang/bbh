@@ -4,4 +4,5 @@ class Task < ApplicationRecord
 
   validates :goal, presence: true
   validates :category, presence: true
+  validates :description, presence: true
 end

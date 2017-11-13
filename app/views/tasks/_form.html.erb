@@ -1,17 +1,15 @@
 <%= form_with(model: task, local: true) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+  <%= render 'shared/error_explanation' if task.errors.any? %>
 
-      <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form.label :category_id, 'Category' %>
+  <%= form.select :category_id, categories_for_select,
+                                { prompt: 'Select a category' },
+                                { class: 'form-control' } %>
 
-  <div class="actions">
+  <%= form.label :description, 'Description' %>
+  <%= form.text_field :description, class: 'form-control' %>
+
+  <div class='actions'>
     <%= form.submit %>
   </div>
 <% end %>
